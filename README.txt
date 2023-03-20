@@ -1,8 +1,2 @@
-MDB5
-Version: FREE 6.1.0
+Deployed Link : https://aartimehar.github.io/WeatherApp-with-UI/
 
-Documentation:
-https://mdbootstrap.com/docs/standard/
-
-Contact:
-office@mdbootstrap.com
