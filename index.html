@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+  </head>
+  <body>
+    <!-- Start your project here-->
+   
+    <div class = "container my-5">
+    <div class = "row d-flex justify-content-center text-white">
+    <div class = "col-md-12">
+    <div id = "wrapper-bg"class="card bg-image shadow-1-strong"
+    style = "background-image: url(./clouds.gif) ;">
+    <!-- Main Current data -->
+    <div class="card-header text-center border-0">
+    <p class = "h2-mb-1" id ="wrapper-name"></p>
+    <p class = "mb-1" id ="wrapper-description"></p>
+    <p class = "display-1 mb-1" id ="wrapper-temp"></p>
+    <span>Pressure : <span id = wrapper-pressure> </span></span>
+    <span class = "mx-2"></span>
+    <span>Humidity : <span id = wrapper-humidity> </span></span>
+  </div>
+  <!-- Hourly Forecast -->
+  <div class="card-body border-bottom border-top text-center"> 
+
+  <div class="row">
+ 
+  <div class="col-2">
+ <strong class = "d-block mb-2">Now</strong>
+ <img id = "wrapper-icon-hour-now"  src=""    alt="">
+ <strong class = "d-block" id = "wrapper-hour-now" ></strong>
+  </div>
+ 
+  <div class="col-2">
+    <strong class = "d-block mb-2" id = "wrapper-time1"></strong>
+     <img id = "wrapper-icon-hour1"  src=""    alt="">
+     <strong class = "d-block" id = "wrapper-hour1" ></strong>
+  </div>
+
+  <div class="col-2">
+    <strong class = "d-block mb-2" id = "wrapper-time2"></strong>
+     <img id = "wrapper-icon-hour2"  src=""    alt="">
+     <strong class = "d-block" id = "wrapper-hour2" ></strong>
+  </div>
+
+  <div class="col-2">
+    <strong class = "d-block mb-2"  id = "wrapper-time3"></strong>
+     <img id = "wrapper-icon-hour3"  src=""    alt="">
+     <strong class = "d-block" id = "wrapper-hour3" ></strong>
+  </div>
+
+  <div class="col-2">
+    <strong class = "d-block mb-2" id = "wrapper-time4"></strong>
+    <img id = "wrapper-icon-hour4"  src=""    alt="">
+    <strong class = "d-block" id = "wrapper-hour4" ></strong>
+</div>
+
+<div class="col-2">
+  <strong  class = "d-block mb-2" id = "wrapper-time5"></strong>
+   <img id = "wrapper-icon-hour5"  src=""    alt="">
+   <strong class = "d-block" id = "wrapper-hour5" ></strong>
+</div>
+
+
+ 
+  </div>
+
+    <!-- Daily Forecast  -->
+  <div class="card-body">
+  <div class="row">
+  <div class="col-lg-6">
+  <strong>Today</strong>
+  </div>
+  <div class="col-lg-2">
+  <img id="wrapper-icon-today" src="" alt="">
+  </div>
+  <div class="col-lg-4">
+  <span id="wrapper-forcast-today"></span>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="col-lg-6">
+  <strong>Tomorrow</strong>
+  </div>
+  <div class="col-lg-2">
+  <img id="wrapper-icon-tomorrow" src="" alt="">
+  </div>
+  <div class="col-lg-4">
+  <span id="wrapper-forcast-tomorrow"></span>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="col-lg-6">
+  <strong>Day After Tomorrrow</strong>
+  </div>
+  <div class="col-lg-2">
+  <img id="wrapper-icon-dayaftertomorrow" src="" alt="">
+  </div>
+  <div class="col-lg-4">
+  <span id="wrapper-forcast-dayaftertomorrow"></span>
+  </div>
+  </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    <!-- End your project here-->
+
+    <!-- MDB -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript">
+   // https://api.openweathermap.org/data/3.0/onecall?lat=52.382469&lon=-1.258710&units=metric&exclude=minutely,alerts&appid=a19a34c01c2e561e52acfcd51d75779b
+
+   // API Call 
+
+   let queryURL = "https://api.openweathermap.org/data/3.0/onecall?";
+   let lat = "lat=52.370876&";
+   let lon = "lon=-1.265032&";
+   let apiOptions = "units=metric&exclude=minutely,alerts&";
+   let apiKey = "appid=f29cb43ff18804db99427531d5c40e88";
+
+   let file = queryURL + lat + lon + apiOptions + apiKey;
+
+   fetch(file)
+  .then ((response)=> response.json())
+  .then((data)=> {
+    // console.log(data.current.temp);
+    //Weather main Data 
+
+    let main = data.current.weather[0].main;
+    let description = data.current.weather[0].description;
+    let temp = Math.round(data.current.temp);
+    let pressure = data.current.pressure
+    let humidity = data.current.humidity
+    let name = "Rugby";
+
+    document.getElementById("wrapper-description").innerHTML = description;
+    document.getElementById("wrapper-temp").innerHTML = temp + "°C";
+    document.getElementById("wrapper-pressure").innerHTML = pressure + "°C";
+    document.getElementById("wrapper-humidity").innerHTML = humidity + "°C";
+    document.getElementById("wrapper-name").innerHTML = name;
+
+
+    // weather Hourly Data
+
+    let hourNow = data.hourly[0].temp;
+    let hour1 =  data.hourly[1].temp;
+    let hour2 =  data.hourly[2].temp;
+    let hour3 =  data.hourly[3].temp;
+    let hour4 =  data.hourly[4].temp;
+    let hour5 =  data.hourly[5].temp;
+   
+    // console.log (hour5);
+    // console.log (temp);
+
+document.getElementById("wrapper-hour-now").innerHTML = hourNow + "°";
+document.getElementById("wrapper-hour1").innerHTML = hour1 + "°";
+document.getElementById("wrapper-hour2").innerHTML = hour2 + "°";
+document.getElementById("wrapper-hour3").innerHTML = hour3 + "°";
+document.getElementById("wrapper-hour4").innerHTML = hour4 + "°";
+document.getElementById("wrapper-hour5").innerHTML = hour5 + "°";
+
+//Time 
+
+let timeNow = new Date().getHours();
+let time1 = timeNow + 1;
+let time2 = time1 + 1;
+let time3 = time2 + 1;
+let time4 = time3 + 1;
+let time5 = time4 + 1;
+// console.log (time5);
+document.getElementById("wrapper-time1").innerHTML = time1;
+document.getElementById("wrapper-time2").innerHTML = time2;
+document.getElementById("wrapper-time3").innerHTML = time3;
+document.getElementById("wrapper-time4").innerHTML = time4;
+document.getElementById("wrapper-time5").innerHTML = time5;
+
+
+
+    // weather daily data
+
+    let tomorrowTemp = Math.round(data.daily[0].temp.day);
+    let tomorrowWeather= data.daily[0].weather[0].main;
+    let dayafterTomorrow = Math.round(data.daily[1].temp.day);
+    let dayafterTomorrowWeather = data.daily[1].weather[0].main;
+
+    document.getElementById("wrapper-forcast-today").innerHTML = temp + "°C";
+    document.getElementById("wrapper-forcast-tomorrow").innerHTML = tomorrowTemp + "°C";
+    document.getElementById("wrapper-forcast-dayaftertomorrow").innerHTML = dayafterTomorrow + "°C";
+  
+    //Icons 
+
+    let iconBaseurl = "https://openweathermap.org/img/wn/";
+    let iconformat = ".png";
+
+    //Today
+
+    let iconToday = data.current.weather[0].icon;
+    let iconUrlToday = iconBaseurl+iconToday+iconformat;
+    document.getElementById("wrapper-icon-today").src = iconUrlToday;
+
+    //Tomorrow 
+
+    let iconTomorrow = data.daily[0].weather[0].icon;
+    let iconUrlTomorrow = iconBaseurl+iconTomorrow+iconformat;
+    document.getElementById("wrapper-icon-tomorrow").src = iconUrlTomorrow;
+
+    //Day after Tomorrow 
+    let icondayafterTomorrow = data.daily[1].weather[0].icon;
+    let iconUrldayafterTomorrow = iconBaseurl+icondayafterTomorrow+iconformat;
+    document.getElementById("wrapper-icon-dayaftertomorrow").src = iconUrldayafterTomorrow;
+
+    //Icons hourly 
+
+    //Hour now 
+
+    let hournowIcon = data.hourly[0].weather[0].icon
+    let houriconNow = iconBaseurl+hournowIcon+iconformat;
+    document.getElementById("wrapper-icon-hour-now").src = houriconNow;
+
+   //Hour1 
+   let hour1Icon = data.hourly[0].weather[0].icon
+    let houricon1 = iconBaseurl+hour1Icon+iconformat;
+    document.getElementById("wrapper-icon-hour1").src = houricon1;
+
+    //Hour2 
+    let hour2Icon = data.hourly[1].weather[0].icon
+      let houricon2 = iconBaseurl+hour2Icon+iconformat;
+      document.getElementById("wrapper-icon-hour2").src = houricon2;
+
+    //Hour3 
+    let hour3Icon = data.hourly[2].weather[0].icon
+      let houricon3 = iconBaseurl+hour3Icon+iconformat;
+      document.getElementById("wrapper-icon-hour3").src = houricon3;
+
+    //Hour4 
+    let hour4Icon = data.hourly[3].weather[0].icon
+      let houricon4 = iconBaseurl+hour4Icon+iconformat;
+      document.getElementById("wrapper-icon-hour4").src = houricon4;
+
+    //Hour5 
+    let hour5Icon = data.hourly[4].weather[0].icon
+      let houricon5 = iconBaseurl+hour5Icon+iconformat;
+      document.getElementById("wrapper-icon-hour5").src = houricon5;
+
+
+ 
+   // Backgrounds 
+
+   switch (main) {
+    case "snow": 
+    document.getElementById("wrapper-bg").style.backgroundImage = "url ('./snow.gif')";
+    break;
+    case "clouds": 
+    document.getElementById("wrapper-bg").style.backgroundImage = "url ('./clouds.gif')";
+    break;
+    case "fog": 
+    document.getElementById("wrapper-bg").style.backgroundImage = "url ('./fog.gif')";
+    break;
+    case "rain": 
+    document.getElementById("wrapper-bg").style.backgroundImage = "url ('./rain.gif')";
+    break;
+    case "clear": 
+    document.getElementById("wrapper-bg").style.backgroundImage = "url ('./clear.gif')";
+    break;
+    case "thunder": 
+    document.getElementById("wrapper-bg").style.backgroundImage = "url ('./thunderstorm.gif')";
+    break;
+    case "strom": 
+    document.getElementById("wrapper-bg").style.backgroundImage = "url ('./')";
+    break;
+    default: 
+    document.getElementById("wrapper-bg").style.backgroundImage = "url ('./snow.gif')";
+    break;
+   }
+
+
+
+  }
+  );
+  
+
+
+
+
+   </script>
+
+  </body>
+</html>
